@@ -53,12 +53,12 @@
       <!-- RIGHT SECTION -->
       <div class="w-full lg:w-1/2 bg-gray-800 p-6 lg:p-10 overflow-y-auto flex flex-col items-center">
 
-        <% if (notes.length === 0) { %>
+        <% if (notes?.length === 0) { %>
         <h1 class="text-gray-300 text-lg mb-4">No notes yet — add one!</h1>
         <% } %>
 
         <% notes.forEach(note => { 
-            const displayTitle = note.replace(".txt", "").split("_").join(" ");
+            const displayTitle = note?.replace(".txt", "")?.split("_")?.join(" ");
         %>
 
         <div class="bg-zinc-700 p-6 rounded-xl w-full max-w-xl shadow-lg mb-5">

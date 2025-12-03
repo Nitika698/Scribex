@@ -12,7 +12,7 @@ app.set("view engine", "ejs");
 app.get("/", (req, res) => {
   fs.readdir("./notes/", (err, files) => {
 
-    res.render("index", { notes: files });
+    res.render("index", { notes: files || [] });
   });
 });
 
