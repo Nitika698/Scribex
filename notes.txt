@@ -1,0 +1,96 @@
+ npm init -y
+ npm i express
+ npm i -g nodemon
+ npm i ejs(template engine)
+
+
+
+ HTML -->website pr jo bhi dikh rha hai content wo sab html h
+tags ---> <>
+emmet(extension) -->we get the suggestions in vs code due to this extension
+div -->ek box structure jo ki width rkhta h lekin height ni(by deafault height noi hoti h isko height dekr hm dkh skta h)
+use-->ek s zada element ek sth rkhna k liye use hota h 
+
+For icons -->remix icon
+For images -->unsplash
+
+*****************************************************************************************************************************************
+Github -->centeral codebase 
+Git --> apka kud k system par project manage krna
+
+git installation
+git(we write this to check if git is installed or not)
+
+git config --global user.name "Nitika Thakur"
+git config --global user.email "thakurnitika858@gmail.com"
+git config --global core.editor "code --wait"
+git config --global core.autocrlf
+git config --global -e
+
+
+Stages-->1. U- untracked
+         2. A- added or staged
+         3. C -commited
+
+
+git status -s =>To know current status of unstaged and staged files
+git log --oneline =>To know current status of saved points
+git log --oneline --graph
+
+
+**going back to some previous saved points
+git reset --hard HEAD~1(jitna step picha jana h)
+
+
+jb hm new folder bnate h toh git ko kuch ni pta hota h hmra folder k bara m,isliye hm vha par git ko intialize krta h,
+ab git ko permissions mili h toh vo hmra folder ko pehchanta h.
+
+git status btata h file k changes k bara m and uska state k bara m ,before commit or after commit
+git log btata h saree commit histories
+
+**************************************************************************************************************************
+Branching
+
+git branch feature/navbar
+git branch
+
+git switch main
+git merge feature/navbar
+
+
+*****************************************************************************************************************************************************************
+
+main banda folder and initial files bnayga
+phir github par dhal do
+collaborators ass kra
+
+sara banda us repo s cloning kraga
+*ver imp* -->apni branch create kra phir
+apna code usi branch m likha
+complete hona pr commit kr da and push kr da
+inform krda teammates ko about the commit
+phir mainbanda fetch kraga and merge kraga and re-push
+
+**-->git fetch
+git switch feature/adding-marquee-effect
+//ab agr main bnda ko lgaga ko code shi h toh 
+git switch main
+git merge feature/adding-marquee-effect
+git push origin main
+
+*******************************************************************************
+Ab dusra bnda clone ksa kraga
+
+git clone https://github.com/Nitika698/FRONTEND.git(url paste krdaga github s)
+git switch -C feature/adding-marquee-effect
+git branch(to check how many branches)
+
+then how to commit
+git add .
+git commit -m "added marquee feature"
+
+//now to upload in github
+git push -u origin feature/adding-marquee-effect
+
+git fetch
+git pull

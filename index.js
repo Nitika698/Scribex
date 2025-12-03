@@ -11,7 +11,6 @@ app.set("view engine", "ejs");
 // HOME PAGE – LIST NOTES
 app.get("/", (req, res) => {
   fs.readdir("./notes/", (err, files) => {
-    if (err) return res.send("Error loading notes");
 
     res.render("index", { notes: files });
   });
@@ -24,7 +23,7 @@ app.post("/create", (req, res) => {
   let fileName = title.trim().split(" ").join("_") + ".txt";
 
   fs.writeFile(`./notes/${fileName}`, description, (err) => {
-    if (err) console.log(err);
+    
     return res.redirect("/");
   });
 });
@@ -35,7 +34,7 @@ app.get("/first/:fileName", (req, res) => {
   const title = fileName.replace(".txt", "").split("_").join(" ");
 
   fs.readFile(`./notes/${fileName}`, "utf-8", (err, data) => {
-    if (err) return res.send("Note not found");
+   
 
     res.render("first", {
       data: {
@@ -53,7 +52,7 @@ app.get("/edit/:fileName", (req, res) => {
   const title = fileName.replace(".txt", "").split("_").join(" ");
 
   fs.readFile(`./notes/${fileName}`, "utf-8", (err, data) => {
-    if (err) return res.send("Note not found");
+    
 
     res.render("edit", {
       data: {
@@ -75,12 +74,12 @@ app.post("/update/:fileName", (req, res) => {
 
   // update description first
   fs.writeFile(`./notes/${oldFileName}`, description, (err) => {
-    if (err) console.log(err);
+    
 
     // if title changed → rename file
     if (oldFileName !== newFileName) {
       fs.rename(`./notes/${oldFileName}`, `./notes/${newFileName}`, (err) => {
-        if (err) console.log(err);
+        
         return res.redirect(`/first/${newFileName}`);
       });
     } else {
@@ -94,7 +93,7 @@ app.get("/delete/:fileName", (req, res) => {
   const { fileName } = req.params;
 
   fs.unlink(`./notes/${fileName}`, (err) => {
-    if (err) return res.send("Error deleting note");
+   
     return res.redirect("/");
   });
 });
