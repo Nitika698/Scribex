@@ -8,7 +8,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 
-// HOME PAGE – LIST NOTES
+
 app.get("/", (req, res) => {
   fs.readdir("./notes/", (err, files) => {
 
@@ -16,19 +16,21 @@ app.get("/", (req, res) => {
   });
 });
 
-// CREATE NOTE
+
 app.post("/create", (req, res) => {
   const { title, description } = req.body;
+  console.log(req.body);
 
   let fileName = title.trim().split(" ").join("_") + ".txt";
+  console.log(fileName);
 
   fs.writeFile(`./notes/${fileName}`, description, (err) => {
-    
+    console.log("File written");
     return res.redirect("/");
   });
 });
 
-// READ NOTE PAGE
+
 app.get("/first/:fileName", (req, res) => {
   const { fileName } = req.params;
   const title = fileName.replace(".txt", "").split("_").join(" ");
@@ -46,7 +48,7 @@ app.get("/first/:fileName", (req, res) => {
   });
 });
 
-// EDIT PAGE
+
 app.get("/edit/:fileName", (req, res) => {
   const { fileName } = req.params;
   const title = fileName.replace(".txt", "").split("_").join(" ");
@@ -64,19 +66,16 @@ app.get("/edit/:fileName", (req, res) => {
   });
 });
 
-// UPDATE NOTE (Title + Description)
 app.post("/update/:fileName", (req, res) => {
   const oldFileName = req.params.fileName;
   const { title, description } = req.body;
 
-  // new filename (if title changed)
   const newFileName = title.trim().split(" ").join("_") + ".txt";
 
-  // update description first
   fs.writeFile(`./notes/${oldFileName}`, description, (err) => {
     
 
-    // if title changed → rename file
+    
     if (oldFileName !== newFileName) {
       fs.rename(`./notes/${oldFileName}`, `./notes/${newFileName}`, (err) => {
         
@@ -88,7 +87,7 @@ app.post("/update/:fileName", (req, res) => {
   });
 });
 
-// DELETE NOTE
+
 app.get("/delete/:fileName", (req, res) => {
   const { fileName } = req.params;
 
@@ -98,7 +97,7 @@ app.get("/delete/:fileName", (req, res) => {
   });
 });
 
-// START SERVER
+
 app.listen(3000, () => {
   console.log("Server is running on port 3000");
 });
